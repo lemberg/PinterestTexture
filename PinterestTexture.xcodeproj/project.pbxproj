@@ -97,6 +97,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9B17CA081F31E9DC0049BAF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B2FFCB81F31C2FA0092DD45 /* PinModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9B17CA091F31EB260049BAF7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9B2FFC8C1F31C2560092DD45 /* AppDelegate.swift */,
+				9B2FFCBB1F31C2FA0092DD45 /* ViewController.swift */,
+				9B2FFCB61F31C2FA0092DD45 /* Constants.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		9B17CA0A1F31EB2C0049BAF7 /* PinsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				9B2FFCB91F31C2FA0092DD45 /* PinNode.swift */,
+				9B2FFCB71F31C2FA0092DD45 /* MosaicPinLayout.swift */,
+				9B2FFCBA1F31C2FA0092DD45 /* PinsViewController.swift */,
+			);
+			name = PinsFeed;
+			sourceTree = "<group>";
+		};
 		9B2FFC801F31C2560092DD45 = {
 			isa = PBXGroup;
 			children = (
@@ -121,13 +149,9 @@
 		9B2FFC8B1F31C2560092DD45 /* PinterestTexture */ = {
 			isa = PBXGroup;
 			children = (
-				9B2FFC8C1F31C2560092DD45 /* AppDelegate.swift */,
-				9B2FFCBB1F31C2FA0092DD45 /* ViewController.swift */,
-				9B2FFCB61F31C2FA0092DD45 /* Constants.swift */,
-				9B2FFCB71F31C2FA0092DD45 /* MosaicPinLayout.swift */,
-				9B2FFCB81F31C2FA0092DD45 /* PinModel.swift */,
-				9B2FFCB91F31C2FA0092DD45 /* PinNode.swift */,
-				9B2FFCBA1F31C2FA0092DD45 /* PinsViewController.swift */,
+				9B17CA091F31EB260049BAF7 /* Main */,
+				9B17CA0A1F31EB2C0049BAF7 /* PinsFeed */,
+				9B17CA081F31E9DC0049BAF7 /* Model */,
 			);
 			path = PinterestTexture;
 			sourceTree = "<group>";

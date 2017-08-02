@@ -8,6 +8,7 @@
 
 import UIKit
 import PinterestSDK
+import PKHUD
 
 
 //Start Controller
@@ -33,11 +34,15 @@ class ViewController: UIViewController {
     
     func authentificate() {
         
+
         PDKClient.sharedInstance().authenticate(withPermissions: [PDKClientReadPublicPermissions,PDKClientWritePublicPermissions, PDKClientReadRelationshipsPermissions,PDKClientWriteRelationshipsPermissions], from: self, withSuccess: { (responseObject) in
             
+            HUD.show(.progress)
             PDKClient.sharedInstance().getAuthenticatedUserPins(withFields: ["id", "image", "note"], success: { (responseObject) in
                 
                 let vc = PinsViewController(with: responseObject)
+                
+                HUD.flash(.success, delay: 1.0)
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, andFailure: { (error) in

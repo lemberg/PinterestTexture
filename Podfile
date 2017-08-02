@@ -7,6 +7,7 @@ target 'PinterestTexture' do
 
   pod "Texture"
   pod "PinterestSDK", :git => "https://github.com/pinterest/ios-pdk.git"
+  pod 'PKHUD', '~> 4.0'
 
   target 'PinterestTextureTests' do
     inherit! :search_paths
