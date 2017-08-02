@@ -23,17 +23,15 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         print("init")
         
         let flowLayout = MosaicPinLayout()
-        flowLayout.numberOfColumns = 3;
+//        flowLayout.numberOfColumns = 3;
         flowLayout.minimumLineSpacing = 8
-        flowLayout.minimumInteritemSpacing = 8
+        flowLayout.minimumInteritemSpacing = 4
 
-        
         collectionNode = ASCollectionNode(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
 //        collectionNode.view.allowsSelection = false
-        collectionNode.backgroundColor = .white
+        collectionNode.backgroundColor = .brown
         
-//        collectionNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         super.init(node: collectionNode)
         
         self.collectionNode.frame = self.view.bounds

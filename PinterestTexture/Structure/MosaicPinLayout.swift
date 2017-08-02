@@ -17,7 +17,7 @@ protocol MosaicPinLayoutDelegate: ASCollectionDelegate {
 class MosaicPinLayout: UICollectionViewFlowLayout {
     
     var delegate: MosaicPinLayoutDelegate!
-    var numberOfColumns = 3
+    var numberOfColumns = 2
     
     /// Array of all attributes for cells in `MosaicPinLayout`
     private var cache = [UICollectionViewLayoutAttributes]()
@@ -59,7 +59,6 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
 
         var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
         
-        
         let numberOfSections: NSInteger = collectionView.numberOfSections
         
         guard numberOfSections > 0 else {
@@ -69,24 +68,40 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
 
             let indexPath = IndexPath(item: item, section: 0)
+            print("column #\(indexPath.row)")
 
             let cellSize = delegate.collectionView(collectionView, layout: self, originalItemSizeAtIndexPath: indexPath)
         
             let columnHeigth = (cellSize.height * columnWidth) / cellSize.width
+            
+            print("columnHeigth = \(columnHeigth)")
 
             var shortestColumn = 0
             if let minYOffset = yOffset.min() {
+                print("minYOffset = \(minYOffset) YES!")
+
                 shortestColumn = yOffset.index(of: minYOffset) ?? 0
             }
+            
+            print("yOffset = \(yOffset)")
+            print("shortestColumn = \(shortestColumn)")
 
             let frame = CGRect(x: xOffset[shortestColumn], y: yOffset[shortestColumn], width: columnWidth, height: columnHeigth)
+            
+            print("frame = \(frame)")
+            
             let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+            
+            print("insetFrame = \(insetFrame)")
+
             
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = insetFrame
             cache.append(attributes)
 
             contentHeight = max(contentHeight, frame.maxY)
+            
+            print("contentHeight = \(contentHeight)")
 
             yOffset[shortestColumn] = yOffset[shortestColumn] + columnHeigth
         }
