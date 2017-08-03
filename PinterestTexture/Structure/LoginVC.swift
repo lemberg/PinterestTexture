@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  TextureDemo
+//  LoginVC.swift
+//  PinterestTexture
 //
 //  Created by Hellen Soloviy on 7/31/17.
 //  Copyright © 2017 Lemberg Solutions Limited. All rights reserved.
@@ -10,9 +10,7 @@ import UIKit
 import PinterestSDK
 import PKHUD
 
-
-//Start Controller
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,21 +32,12 @@ class ViewController: UIViewController {
     
     func authentificate() {
         
-
         PDKClient.sharedInstance().authenticate(withPermissions: [PDKClientReadPublicPermissions,PDKClientWritePublicPermissions, PDKClientReadRelationshipsPermissions,PDKClientWriteRelationshipsPermissions], from: self, withSuccess: { (responseObject) in
             
-            HUD.show(.progress)
-            PDKClient.sharedInstance().getAuthenticatedUserPins(withFields: ["id", "image", "note"], success: { (responseObject) in
-                
-                let vc = PinsViewController(with: responseObject)
-                
-                HUD.flash(.success, delay: 1.0)
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            }, andFailure: { (error) in
-                print("Error || - \(error?.localizedDescription ?? "No description provided")")
-            })
-            
+            let newRootViewController = MainController()
+            let nav = UINavigationController.init(rootViewController: newRootViewController)
+            nav.isNavigationBarHidden = true
+            UIApplication.shared.keyWindow?.rootViewController = nav
             
         }) { (error) in
             print("Error - \(error?.localizedDescription ?? "No description provided")")

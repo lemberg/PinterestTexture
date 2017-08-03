@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  TextureDemo
+//  PinterestTexture
 //
 //  Created by Hellen Soloviy on 8/1/17.
 //  Copyright © 2017 Lemberg Solutions Limited. All rights reserved.

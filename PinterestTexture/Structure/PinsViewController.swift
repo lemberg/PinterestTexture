@@ -9,6 +9,7 @@
 import UIKit
 import PinterestSDK
 import AsyncDisplayKit
+import PKHUD
 
 class PinsViewController: ASViewController<ASCollectionNode> {
     var pins = [Pin]()
@@ -21,8 +22,8 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         
         let flowLayout = MosaicPinLayout()
 
-        flowLayout.minimumLineSpacing = 8
-        flowLayout.minimumInteritemSpacing = 8
+        flowLayout.minimumLineSpacing = 12
+        flowLayout.minimumInteritemSpacing = 12
 
         collectionNode = ASCollectionNode(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
@@ -37,9 +38,13 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         collectionNode.delegate = self
         collectionNode.dataSource = self
         
-        responseCheck(with: response)
+        PDKClient.sharedInstance().getAuthenticatedUserPins(withFields: ["id", "image", "note"], success: { (responseObject) in
+            self.responseCheck(with: responseObject)
+            
+        }, andFailure: { (error) in
+            print("Error || - \(error?.localizedDescription ?? "No description provided")")
+        })
     }
-    
     
     //TODO: need to do something with it
     required init?(coder aDecoder: NSCoder) {
@@ -50,28 +55,34 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        automaticallyAdjustsScrollViewInsets = true
+//        self.edgesForExtendedLayout = []
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-
     func responseCheck(with response: PDKResponseObject?) {
         
         if let responseObject = response {
-            
             if let pins = responseObject.pins() as? [PDKPin] {
                 
                 let pinsModelArray = pins.flatMap({ Pin(with: $0) })
                 self.pins = pinsModelArray
                 
-                print("Yup! Pins are here!")
+                self.collectionNode.reloadData()
+//                HUD.flash(.success, delay: 1.0)
                 
             } else {
-                print("Yup! Pins have not correct format!")
+                print("WARNING: Yup! Pins have not correct format!")
             }
             
         } else {
-            print("Error! No pins here!")
+            print("WARNING: Error! No pins here!")
         }
         
     }

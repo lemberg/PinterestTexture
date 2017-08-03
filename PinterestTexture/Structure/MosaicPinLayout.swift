@@ -96,7 +96,7 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
             
 //            print("#\(indexPath.row): contentHeight = \(contentHeight)")
 
-            yOffset[shortestColumn] = yOffset[shortestColumn] + columnHeigth + textNodeSize
+            yOffset[shortestColumn] = yOffset[shortestColumn] + columnHeigth + 1.5*textNodeSize
         }
     }
     

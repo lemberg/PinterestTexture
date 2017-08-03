@@ -32,7 +32,7 @@ class PinNode: ASCellNode {
         
         self.addSubnode(commentNode)
         
-        self.borderColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1).cgColor
+        self.borderColor = #colorLiteral(red: 0.8392156863, green: 0.8392156863, blue: 0.8392156863, alpha: 1).cgColor
         self.borderWidth = 1.0
     }
     

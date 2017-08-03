@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-775" y="26"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="Jrn-DL-g0u">
             <objects>
-                <viewController id="GWz-ZX-7ib" customClass="ViewController" customModule="PinterestTexture" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GWz-ZX-7ib" customClass="LoginVC" customModule="PinterestTexture" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Em2-bS-rrl"/>
                         <viewControllerLayoutGuide type="bottom" id="CcK-yH-Pyt"/>
