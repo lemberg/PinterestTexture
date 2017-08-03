@@ -27,7 +27,7 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         collectionNode = ASCollectionNode(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
 //        collectionNode.view.allowsSelection = false
-        collectionNode.backgroundColor = .brown
+        collectionNode.backgroundColor = .white
         
         super.init(node: collectionNode)
         
@@ -57,8 +57,6 @@ class PinsViewController: ASViewController<ASCollectionNode> {
 
     func responseCheck(with response: PDKResponseObject?) {
         
-        print("responseCheck")
-
         if let responseObject = response {
             
             if let pins = responseObject.pins() as? [PDKPin] {

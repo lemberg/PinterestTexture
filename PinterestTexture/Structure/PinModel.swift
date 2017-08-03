@@ -14,9 +14,17 @@ import PinterestSDK
 class Pin {
     
     fileprivate var _id: String
-    fileprivate var _url: String
-    fileprivate var _width: Int
-    fileprivate var _height: Int
+    
+    //TODO: fix it
+    //Default data until this is development
+    fileprivate var _url: String = "http://e-shuushuu.net/images/2016-08-29-856644.png"
+
+    fileprivate var _width: Int = 44
+    fileprivate var _height: Int = 80
+    
+    fileprivate var _descriptionText: String
+    
+    fileprivate var _board: PDKBoard
     
     var id: String {
         get {
@@ -47,36 +55,44 @@ class Pin {
         
     }
     
+    
+    var descriptionText: String {
+        get {
+            return _descriptionText
+        }
+        
+    }
+
+    var board: PDKBoard {
+        get {
+            return _board
+        }
+        
+    }
+
+    
     init(with pin: PDKPin) {
         
         self._id = pin.identifier
+        self._descriptionText = pin.descriptionText
+        self._board = pin.board
         
         if let imageData = pin.images[PinConstants.original], let original = imageData as? [String:AnyObject] {
             
             if let url = original[PinConstants.url] as? String {
                 self._url = url
-            } else {
-                self._url = "http://e-shuushuu.net/images/2016-08-29-856644.png"
             }
             
             
             if let width = original[PinConstants.width] as? Int {
                 self._width = width
-            } else {
-                self._width = 44
             }
             
             
             if let height = original[PinConstants.height] as? Int {
                 self._height = height
-            } else {
-                self._height = 80
             }
             
-        } else {
-            self._url = "http://e-shuushuu.net/images/2016-08-29-856644.png"
-            self._width = 44
-            self._height = 80
         }
         
     

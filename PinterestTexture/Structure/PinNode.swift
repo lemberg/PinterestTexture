@@ -23,20 +23,22 @@ class PinNode: ASCellNode {
         super.init()
         
         imageNode.url = URL(string: pin.url)
+        imageNode.delegate = self
         self.addSubnode(imageNode)
         
         commentNode = ASTextNode()
-        commentNode.maximumNumberOfLines = 3
-        commentNode.attributedText = NSAttributedString(string: "Some special text for testing textNode", attributes: [NSForegroundColorAttributeName:#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)])
+        commentNode.maximumNumberOfLines = 2
+        commentNode.attributedText = NSAttributedString(string: object.descriptionText, attributes: [NSForegroundColorAttributeName:#colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)])
         
         self.addSubnode(commentNode)
-
+        
+        self.borderColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1).cgColor
+        self.borderWidth = 1.0
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
                 
         let size = CGSize(width: object.width, height: object.height)
-        print("Size - - w: \(size.width) h: \(size.height)")
 
         let child = ASRatioLayoutSpec(ratio: size.height/size.width, child: imageNode)
         var insets = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -51,7 +53,21 @@ class PinNode: ASCellNode {
         return mainSpec
 
     }
+    
+    
 
+}
+
+extension PinNode: ASNetworkImageNodeDelegate {
+    
+    public func imageNode(_ imageNode: ASNetworkImageNode, didLoad image: UIImage) {
+        
+//       let corneredImage = image.round(cornerRadius: 20)
+//       imageNode.image = corneredImage
+        
+    }
+
+    
 }
 
 
