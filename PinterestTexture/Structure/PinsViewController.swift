@@ -14,18 +14,15 @@ class PinsViewController: ASViewController<ASCollectionNode> {
     var pins = [Pin]()
     
     var collectionNode: ASCollectionNode
-    
-//    let layoutInspector = MosaicCollectionViewLayoutInspector()
-//    let kNumberOfImages: UInt = 14
 
     init(with response: PDKResponseObject? = nil) {
         
         print("init")
         
         let flowLayout = MosaicPinLayout()
-//        flowLayout.numberOfColumns = 3;
+
         flowLayout.minimumLineSpacing = 8
-        flowLayout.minimumInteritemSpacing = 4
+        flowLayout.minimumInteritemSpacing = 8
 
         collectionNode = ASCollectionNode(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
@@ -43,14 +40,14 @@ class PinsViewController: ASViewController<ASCollectionNode> {
         responseCheck(with: response)
     }
     
+    
+    //TODO: need to do something with it
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,8 +56,6 @@ class PinsViewController: ASViewController<ASCollectionNode> {
     
 
     func responseCheck(with response: PDKResponseObject?) {
-        
-        //po (pins[0].images["original"]! as! [String:Any])["url"]!
         
         print("responseCheck")
 
@@ -92,7 +87,7 @@ class PinsViewController: ASViewController<ASCollectionNode> {
 }
 
 extension PinsViewController: ASCollectionDelegate {
-
+    
 }
 
 extension PinsViewController: ASCollectionDataSource {
@@ -109,6 +104,7 @@ extension PinsViewController: ASCollectionDataSource {
         guard pins.count > indexPath.row else { return { ASCellNode() } }
         
         let pinData = self.pins[indexPath.row]
+        
         // this may be executed on a background thread - it is important to make sure it is thread safe
             let cellNodeBlock = { () -> PinNode in
                 let cellNode = PinNode(pin: pinData)

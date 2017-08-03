@@ -22,16 +22,29 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
     /// Array of all attributes for cells in `MosaicPinLayout`
     private var cache = [UICollectionViewLayoutAttributes]()
     
-    private var cellPadding:CGFloat = 8.0
     
-    // Need to save it because of func `collectionViewContentSize`
+    /// Need to save it because of func `collectionViewContentSize`
     private var contentHeight: CGFloat  = 0.0
     
-    private var contentWidth: CGFloat {
-        let insets = collectionView!.contentInset
-        return collectionView!.bounds.width - (insets.left + insets.right)
+    private var textNodeSize: CGFloat = 40.0
+    
+    var flowContentInset: UIEdgeInsets  {
+        return UIEdgeInsets(top: minimumLineSpacing, left: minimumInteritemSpacing, bottom: minimumLineSpacing, right: minimumInteritemSpacing)
     }
     
+    private var contentGeneralWidth: CGFloat {
+        return collectionView!.bounds.width //- (flowContentInset.left + flowContentInset.right)
+    }
+    
+    private var contentWidthWithoutSpacing: CGFloat {
+        return contentGeneralWidth - offsetGeneralWidth
+    }
+    
+    /// Need for calculate inserts and item size
+    /// Count of interitem spacings always bigger then numberOfColumns, so adding 1
+    private var offsetGeneralWidth: CGFloat {
+        return minimumInteritemSpacing * CGFloat(numberOfColumns + 1)
+    }
     
     /**
      
@@ -50,14 +63,9 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
         cache = [UICollectionViewLayoutAttributes]()
         contentHeight = 0
         
-        let columnWidth = contentWidth / CGFloat(numberOfColumns)
-        
-        var xOffset = [CGFloat]()
-        for column in 0 ..< numberOfColumns {
-            xOffset.append(CGFloat(column) * columnWidth)
-        }
-
-        var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
+        let columnWidth = contentWidthWithoutSpacing / CGFloat(numberOfColumns)
+        var xOffset = calculateXOffsetForItems(with: columnWidth)
+        var yOffset = [CGFloat](repeating: minimumLineSpacing, count: numberOfColumns)
         
         let numberOfSections: NSInteger = collectionView.numberOfSections
         
@@ -68,42 +76,27 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
 
             let indexPath = IndexPath(item: item, section: 0)
-            print("column #\(indexPath.row)")
 
             let cellSize = delegate.collectionView(collectionView, layout: self, originalItemSizeAtIndexPath: indexPath)
         
             let columnHeigth = (cellSize.height * columnWidth) / cellSize.width
             
-            print("columnHeigth = \(columnHeigth)")
-
             var shortestColumn = 0
             if let minYOffset = yOffset.min() {
-                print("minYOffset = \(minYOffset) YES!")
-
                 shortestColumn = yOffset.index(of: minYOffset) ?? 0
             }
             
-            print("yOffset = \(yOffset)")
-            print("shortestColumn = \(shortestColumn)")
-
-            let frame = CGRect(x: xOffset[shortestColumn], y: yOffset[shortestColumn], width: columnWidth, height: columnHeigth)
-            
-            print("frame = \(frame)")
-            
-            let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
-            
-            print("insetFrame = \(insetFrame)")
-
+            let frame = CGRect(x: xOffset[shortestColumn], y: yOffset[shortestColumn], width: columnWidth, height: columnHeigth+textNodeSize)
             
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attributes.frame = insetFrame
+            attributes.frame = frame
             cache.append(attributes)
 
-            contentHeight = max(contentHeight, frame.maxY)
+            contentHeight = max(contentHeight+textNodeSize, frame.maxY)
             
-            print("contentHeight = \(contentHeight)")
+//            print("#\(indexPath.row): contentHeight = \(contentHeight)")
 
-            yOffset[shortestColumn] = yOffset[shortestColumn] + columnHeigth
+            yOffset[shortestColumn] = yOffset[shortestColumn] + columnHeigth + textNodeSize
         }
     }
     
@@ -133,6 +126,34 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
     
     override var collectionViewContentSize: CGSize {
         return CGSize(width: self.collectionView!.bounds.size.width, height: contentHeight)
+    }
+    
+}
+
+//MARK: Different calculations
+extension MosaicPinLayout {
+
+    
+    /**
+        - Parameter columnWidth: Fixed width for each item in column
+        - Returns: Fixed array of X points where flow will create each new item.
+     */
+    func calculateXOffsetForItems(with columnWidth: CGFloat) -> [CGFloat] {
+       
+        var xOffset = [CGFloat]()
+        
+        for column in 0 ..< numberOfColumns {
+            
+            var offset = CGFloat(column) * columnWidth
+            
+            offset = offset + minimumInteritemSpacing
+            if column.boolValue { offset = offset + minimumInteritemSpacing }
+            
+            xOffset.append(offset)
+        }
+        
+        return xOffset
+        
     }
     
 }

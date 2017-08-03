@@ -20,6 +20,7 @@
 		9B2FFCC01F31C2FA0092DD45 /* PinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FFCBA1F31C2FA0092DD45 /* PinsViewController.swift */; };
 		9B2FFCC11F31C2FA0092DD45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FFCBB1F31C2FA0092DD45 /* ViewController.swift */; };
 		9B2FFCC31F31C4010092DD45 /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FFCB81F31C2FA0092DD45 /* PinModel.swift */; };
+		9B74A44C1F3316D300A90F4D /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		9B2FFCBA1F31C2FA0092DD45 /* PinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinsViewController.swift; path = Structure/PinsViewController.swift; sourceTree = "<group>"; };
 		9B2FFCBB1F31C2FA0092DD45 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Structure/ViewController.swift; sourceTree = "<group>"; };
 		9B2FFCC41F31C4700092DD45 /* PinterestTexture-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PinterestTexture-Header.h"; sourceTree = "<group>"; };
+		9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		C5AE6C3C68E61DA2A815AA95 /* Pods-PinterestTexture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterestTexture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterestTexture/Pods-PinterestTexture.debug.xcconfig"; sourceTree = "<group>"; };
 		DF1DE4DB36410616BC6DD56A /* Pods-PinterestTextureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterestTextureTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterestTextureTests/Pods-PinterestTextureTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 				9B2FFC8C1F31C2560092DD45 /* AppDelegate.swift */,
 				9B2FFCBB1F31C2FA0092DD45 /* ViewController.swift */,
 				9B2FFCB61F31C2FA0092DD45 /* Constants.swift */,
+				9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B74A44C1F3316D300A90F4D /* GeneralExtensions.swift in Sources */,
 				9B2FFCC31F31C4010092DD45 /* PinModel.swift in Sources */,
 				9B2FFC8D1F31C2560092DD45 /* AppDelegate.swift in Sources */,
 				9B2FFCBF1F31C2FA0092DD45 /* PinNode.swift in Sources */,
