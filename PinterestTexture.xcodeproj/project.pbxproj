@@ -25,6 +25,8 @@
 		9BA2E3451F33634300E8DCA7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2E3441F33634300E8DCA7 /* ProfileVC.swift */; };
 		9BA2E3471F33637700E8DCA7 /* BoardsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2E3461F33637700E8DCA7 /* BoardsListVC.swift */; };
 		9BC231C11F33515300CB9BAA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC231C01F33515200CB9BAA /* TabBarController.swift */; };
+		9BE2E9BA1F38677C005E83B9 /* BoardsFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2E9B91F38677C005E83B9 /* BoardsFlowLayout.swift */; };
+		9BE2E9BC1F386830005E83B9 /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2E9BB1F386830005E83B9 /* BoardNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,7 @@
 				9B2FFCBA1F31C2FA0092DD45 /* PinsViewController.swift */,
 				9B2FFCB71F31C2FA0092DD45 /* MosaicPinLayout.swift */,
 				9B2FFCB91F31C2FA0092DD45 /* PinNode.swift */,
+				9B8FB6661F45E1D600EECACC /* TitleView.swift */,
 			);
 			name = PinsFeed;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				9B74A44C1F3316D300A90F4D /* GeneralExtensions.swift in Sources */,
 				9BA2E3451F33634300E8DCA7 /* ProfileVC.swift in Sources */,
 				9B2FFCC31F31C4010092DD45 /* PinModel.swift in Sources */,
+				9B8FB6671F45E1D600EECACC /* TitleView.swift in Sources */,
 				9B2FFC8D1F31C2560092DD45 /* AppDelegate.swift in Sources */,
 				9BE2E9BC1F386830005E83B9 /* BoardNode.swift in Sources */,
 				9BC231C11F33515300CB9BAA /* TabBarController.swift in Sources */,

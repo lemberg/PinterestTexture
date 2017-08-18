@@ -19,6 +19,21 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
     var delegate: MosaicPinLayoutDelegate!
     var numberOfColumns = 2
     
+    var title = ""
+    
+    private let titleKind = "title"
+    private let titleHeight : CGFloat = 50
+    private var titleRect : CGRect = CGRect(x: 10, y: 0, width: 200, height: 50)
+  
+    override init() {
+        super.init()
+        self.register(TitleView.self, forDecorationViewOfKind:self.titleKind)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     /// Array of all attributes for cells in `MosaicPinLayout`
     private var cache = [UICollectionViewLayoutAttributes]()
     
@@ -77,6 +92,8 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
 
             let indexPath = IndexPath(item: item, section: 0)
 
+            title = "States"
+            
             let cellSize = delegate.collectionView(collectionView, layout: self, originalItemSizeAtIndexPath: indexPath)
         
             let columnHeigth = (cellSize.height * columnWidth) / cellSize.width
@@ -100,14 +117,42 @@ class MosaicPinLayout: UICollectionViewFlowLayout {
         }
     }
     
+    
+    
+    override func layoutAttributesForDecorationView( ofKind elementKind: String, at indexPath: IndexPath) ->
+        UICollectionViewLayoutAttributes? {
+            if elementKind == self.titleKind {
+                let atts = TitleViewLayoutAttributes( // *
+                    forDecorationViewOfKind:self.titleKind, with:indexPath)
+                atts.title = self.title // *
+                let new = CGRect(x: 10, y: 0, width: 200, height: self.titleHeight)
+                atts.frame = new
+                return atts
+            }
+            return nil
+    }
+    
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
       
         for attributes in cache {
+
             if attributes.frame.intersects(rect) {
                 layoutAttributes.append(attributes)
             }
+            
+            if let decatts = self.layoutAttributesForDecorationView(
+                ofKind:self.titleKind, at: IndexPath(item: 0, section: 0)) {
+                if rect.contains(decatts.frame) {
+                    layoutAttributes.append(decatts)
+                }
+            }
+            
         }
+        
+
+        
         return layoutAttributes
     }
     
