@@ -21,6 +21,9 @@
 		9B2FFCC11F31C2FA0092DD45 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FFCBB1F31C2FA0092DD45 /* LoginVC.swift */; };
 		9B2FFCC31F31C4010092DD45 /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FFCB81F31C2FA0092DD45 /* PinModel.swift */; };
 		9B74A44C1F3316D300A90F4D /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */; };
+		9B8FB6671F45E1D600EECACC /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8FB6661F45E1D600EECACC /* TitleView.swift */; };
+		9BA2E3451F33634300E8DCA7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2E3441F33634300E8DCA7 /* ProfileVC.swift */; };
+		9BA2E3471F33637700E8DCA7 /* BoardsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2E3461F33637700E8DCA7 /* BoardsListVC.swift */; };
 		9BC231C11F33515300CB9BAA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC231C01F33515200CB9BAA /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +59,12 @@
 		9B2FFCBB1F31C2FA0092DD45 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = Structure/LoginVC.swift; sourceTree = "<group>"; };
 		9B2FFCC41F31C4700092DD45 /* PinterestTexture-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PinterestTexture-Header.h"; sourceTree = "<group>"; };
 		9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		9B8FB6661F45E1D600EECACC /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		9BA2E3441F33634300E8DCA7 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileVC.swift; path = Structure/TabBar/profile/ProfileVC.swift; sourceTree = "<group>"; };
+		9BA2E3461F33637700E8DCA7 /* BoardsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardsListVC.swift; path = Structure/TabBar/Boards/BoardsListVC.swift; sourceTree = "<group>"; };
 		9BC231C01F33515200CB9BAA /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Structure/TabBar/TabBarController.swift; sourceTree = "<group>"; };
+		9BE2E9B91F38677C005E83B9 /* BoardsFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardsFlowLayout.swift; path = Structure/TabBar/Boards/BoardsFlowLayout.swift; sourceTree = "<group>"; };
+		9BE2E9BB1F386830005E83B9 /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardNode.swift; path = Structure/TabBar/Boards/BoardNode.swift; sourceTree = "<group>"; };
 		C5AE6C3C68E61DA2A815AA95 /* Pods-PinterestTexture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterestTexture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterestTexture/Pods-PinterestTexture.debug.xcconfig"; sourceTree = "<group>"; };
 		DF1DE4DB36410616BC6DD56A /* Pods-PinterestTextureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterestTextureTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterestTextureTests/Pods-PinterestTextureTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9B2FFC8C1F31C2560092DD45 /* AppDelegate.swift */,
-				9B2FFCBB1F31C2FA0092DD45 /* LoginVC.swift */,
+				9BE2E9B81F3863D2005E83B9 /* Login */,
 				9B2FFCB61F31C2FA0092DD45 /* Constants.swift */,
 				9B74A44B1F3316D300A90F4D /* GeneralExtensions.swift */,
 				9BA2E3421F335E7100E8DCA7 /* Navigation */,
@@ -187,9 +195,29 @@
 			isa = PBXGroup;
 			children = (
 				9BC231C01F33515200CB9BAA /* TabBarController.swift */,
+				9BA2E3441F33634300E8DCA7 /* ProfileVC.swift */,
+				9BE2E9BD1F386839005E83B9 /* boards */,
 				9B17CA0A1F31EB2C0049BAF7 /* PinsFeed */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		9BE2E9B81F3863D2005E83B9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9B2FFCBB1F31C2FA0092DD45 /* LoginVC.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		9BE2E9BD1F386839005E83B9 /* boards */ = {
+			isa = PBXGroup;
+			children = (
+				9BA2E3461F33637700E8DCA7 /* BoardsListVC.swift */,
+				9BE2E9B91F38677C005E83B9 /* BoardsFlowLayout.swift */,
+				9BE2E9BB1F386830005E83B9 /* BoardNode.swift */,
+			);
+			name = boards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +276,7 @@
 				TargetAttributes = {
 					9B2FFC881F31C2560092DD45 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = J7LBYY3B34;
+						DevelopmentTeam = FN2T3UCV4E;
 						ProvisioningStyle = Automatic;
 					};
 					9B2FFC9C1F31C2560092DD45 = {
@@ -397,13 +425,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B74A44C1F3316D300A90F4D /* GeneralExtensions.swift in Sources */,
+				9BA2E3451F33634300E8DCA7 /* ProfileVC.swift in Sources */,
 				9B2FFCC31F31C4010092DD45 /* PinModel.swift in Sources */,
 				9B2FFC8D1F31C2560092DD45 /* AppDelegate.swift in Sources */,
+				9BE2E9BC1F386830005E83B9 /* BoardNode.swift in Sources */,
 				9BC231C11F33515300CB9BAA /* TabBarController.swift in Sources */,
 				9B2FFCBF1F31C2FA0092DD45 /* PinNode.swift in Sources */,
 				9B2FFCBC1F31C2FA0092DD45 /* Constants.swift in Sources */,
 				9B2FFCC11F31C2FA0092DD45 /* LoginVC.swift in Sources */,
 				9B2FFCC01F31C2FA0092DD45 /* PinsViewController.swift in Sources */,
+				9BA2E3471F33637700E8DCA7 /* BoardsListVC.swift in Sources */,
+				9BE2E9BA1F38677C005E83B9 /* BoardsFlowLayout.swift in Sources */,
 				9B2FFCBD1F31C2FA0092DD45 /* MosaicPinLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,7 +578,7 @@
 			baseConfigurationReference = C5AE6C3C68E61DA2A815AA95 /* Pods-PinterestTexture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J7LBYY3B34;
+				DEVELOPMENT_TEAM = FN2T3UCV4E;
 				INFOPLIST_FILE = PinterestTexture/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lemberg.pinteresttexture;
@@ -561,7 +593,7 @@
 			baseConfigurationReference = 7C06F1EC76FC1E35FC00533E /* Pods-PinterestTexture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J7LBYY3B34;
+				DEVELOPMENT_TEAM = FN2T3UCV4E;
 				INFOPLIST_FILE = PinterestTexture/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lemberg.pinteresttexture;

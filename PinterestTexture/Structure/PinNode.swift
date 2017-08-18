@@ -24,6 +24,7 @@ class PinNode: ASCellNode {
         
         imageNode.url = URL(string: pin.url)
         imageNode.delegate = self
+        
         self.addSubnode(imageNode)
         
         commentNode = ASTextNode()
@@ -34,6 +35,7 @@ class PinNode: ASCellNode {
         
         self.borderColor = #colorLiteral(red: 0.8392156863, green: 0.8392156863, blue: 0.8392156863, alpha: 1).cgColor
         self.borderWidth = 1.0
+        
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -51,7 +53,6 @@ class PinNode: ASCellNode {
         let mainSpec = ASStackLayoutSpec(direction: .vertical, spacing: 4, justifyContent: .start, alignItems: .start, children: [finalImageLayoutSpec,finalTextLayoutSpec])
 
         return mainSpec
-
     }
     
     
@@ -61,9 +62,6 @@ class PinNode: ASCellNode {
 extension PinNode: ASNetworkImageNodeDelegate {
     
     public func imageNode(_ imageNode: ASNetworkImageNode, didLoad image: UIImage) {
-        
-//       let corneredImage = image.round(cornerRadius: 20)
-//       imageNode.image = corneredImage
         
     }
 

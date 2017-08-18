@@ -13,22 +13,25 @@ import PKHUD
 
 class MainController: UITabBarController {
     
-//    var pinsTabController: PinsViewController!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //configurate
+        //work with PinsFeedVC
         let pinsTabController = PinsViewController()
-        let pinsTabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "iconTabBarPins.png"), selectedImage: UIImage(named: "iconTabBarPins.png"))
+        let pinsTabBarItem = UITabBarItem(title: "", image: UIImage(named: "iconTabBarPins.png"), selectedImage: UIImage(named: "iconTabBarPins.png"))
         pinsTabController.tabBarItem = pinsTabBarItem
         
-        self.viewControllers = [pinsTabController]
+        //work with BoardsList
+        let boardsTabController = BoardsListVC()
+        let boardsTabBarItem = UITabBarItem(title: "", image: UIImage(named: "iconTabBarBoards.png"), selectedImage: UIImage(named: "iconTabBarBoards.png"))
+        pinsTabController.tabBarItem = boardsTabBarItem
+        
+        self.viewControllers = [pinsTabController, boardsTabController]
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
     }
     
@@ -39,6 +42,8 @@ class MainController: UITabBarController {
     }
     
     
+    
+    //MARK: Delegate
     func tabBarController(_ tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         print("Selected \(viewController.title!)")
     }

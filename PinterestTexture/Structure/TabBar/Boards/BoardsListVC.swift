@@ -1,41 +1,42 @@
 //
-//  PinsViewController.swift
-//  TextureDemo
+//  BoardsListVC.swift
+//  PinterestTexture
 //
-//  Created by Hellen Soloviy on 7/31/17.
+//  Created by Hellen Soloviy on 8/3/17.
 //  Copyright © 2017 Lemberg Solutions Limited. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import PinterestSDK
 import AsyncDisplayKit
 import PKHUD
 
-class PinsViewController: ASViewController<ASCollectionNode> {
+class BoardsListVC: ASViewController<ASCollectionNode> {
     
     var pins = [Pin]()
     
     var collectionNode: ASCollectionNode
-
+    
     init(with response: PDKResponseObject? = nil) {
         
         print("init")
         
-        let flowLayout = MosaicPinLayout()
-
+        let flowLayout = BoardsFlowLayout()
+        
         flowLayout.minimumLineSpacing = 12
         flowLayout.minimumInteritemSpacing = 12
-
+        
         collectionNode = ASCollectionNode(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
-//        collectionNode.view.allowsSelection = false
+        //        collectionNode.view.allowsSelection = false
         collectionNode.backgroundColor = .white
         
         super.init(node: collectionNode)
         
         self.collectionNode.frame = self.view.bounds
-
-        flowLayout.delegate = self
+        
+//        flowLayout.delegate = self
         collectionNode.delegate = self
         collectionNode.dataSource = self
         
@@ -58,9 +59,7 @@ class PinsViewController: ASViewController<ASCollectionNode> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        automaticallyAdjustsScrollViewInsets = true
-//        self.edgesForExtendedLayout = []
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,7 +75,7 @@ class PinsViewController: ASViewController<ASCollectionNode> {
                 self.pins = pinsModelArray
                 
                 self.collectionNode.reloadData()
-//                HUD.flash(.success, delay: 1.0)
+                //                HUD.flash(.success, delay: 1.0)
                 
             } else {
                 print("WARNING: Yup! Pins have not correct format!")
@@ -89,18 +88,18 @@ class PinsViewController: ASViewController<ASCollectionNode> {
     }
     
     func setupCollectionNode() {
-
+        
         
     }
     
     
 }
 
-extension PinsViewController: ASCollectionDelegate {
+extension BoardsListVC: ASCollectionDelegate {
     
 }
 
-extension PinsViewController: ASCollectionDataSource {
+extension BoardsListVC: ASCollectionDataSource {
     
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return 1
@@ -116,10 +115,10 @@ extension PinsViewController: ASCollectionDataSource {
         let pinData = self.pins[indexPath.row]
         
         // this may be executed on a background thread - it is important to make sure it is thread safe
-            let cellNodeBlock = { () -> PinNode in
-                let cellNode = PinNode(pin: pinData)
-                return cellNode
-            }
+        let cellNodeBlock = { () -> PinNode in
+            let cellNode = PinNode(pin: pinData)
+            return cellNode
+        }
         
         return cellNodeBlock
     }
@@ -127,18 +126,12 @@ extension PinsViewController: ASCollectionDataSource {
     
 }
 
-extension PinsViewController: MosaicPinLayoutDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, layout: MosaicPinLayout, originalItemSizeAtIndexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: pins[originalItemSizeAtIndexPath.row].width, height: pins[originalItemSizeAtIndexPath.row].height)
-    }
-    
-    
-}
-
-
-
-
-
-
+//extension BoardsListVC: BoardsFlowLayoutDelegate {
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout: MosaicPinLayout, originalItemSizeAtIndexPath: IndexPath) -> CGSize {
+//        
+//        return CGSize(width: pins[originalItemSizeAtIndexPath.row].width, height: pins[originalItemSizeAtIndexPath.row].height)
+//    }
+//    
+//    
+//}
